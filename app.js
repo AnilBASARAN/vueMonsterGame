@@ -44,7 +44,9 @@ const app = Vue.createApp({
         },
         heal(){
             let healValue = randomizeNumber(10,20);
-           if(this.userHealth>0 && this.userHealth + healValue < 100 ){
+           if(this.userHealth>0 && this.userHealth + healValue > 100 ){
+            this.userHealth = 100;
+             }else{
              this.userHealth += healValue
            }
         },
