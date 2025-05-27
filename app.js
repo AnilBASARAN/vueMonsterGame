@@ -13,10 +13,16 @@ const app = Vue.createApp({
             gameOver:false,
             surrender:false,
             win:false,
+            currentRound:0,
+            disabled:false,
         }
     },
     methods:{
         userAttack(){
+            this.currentRound++;
+            if(this.currentRound >= 4){
+                this.disabled = false;
+            }
             if(this.userHealth>0){
  this.monsterHealth -= randomizeNumber(5,12);
            this.monsterAttack();
@@ -26,6 +32,10 @@ const app = Vue.createApp({
           
         },
         monsterAttack(){
+            this.currentRound++;
+               if(this.currentRound >= 4){
+                this.disabled = false;
+            }
            if(this.monsterHealth>0){
             this.userHealth -= randomizeNumber(8,15);
            }else{
@@ -35,12 +45,16 @@ const app = Vue.createApp({
              
         },
           specialAttack(){
-           if(this.userHealth>0){
+            
+                  if(this.userHealth>0 && this.disabled == false ){
             this.monsterHealth -= randomizeNumber(10,25);
            this.monsterAttack();
            }else{
             this.gameOver = true;
            }
+           this.currentRound = 0;
+           this.disabled = true;
+            
         },
         heal(){
             let healValue = randomizeNumber(10,20);
@@ -49,6 +63,7 @@ const app = Vue.createApp({
              }else{
              this.userHealth += healValue
            }
+           this.monsterAttack();
         },
         surrenderMe(){
             if(!this.gameOver){

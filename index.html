@@ -42,7 +42,7 @@
    
       <section id="controls">
         <button @click="userAttack" >ATTACK</button>
-        <button @click="specialAttack" >SPECIAL ATTACK</button>
+        <button :style="{  background: disabled ? 'gray' : ''  }" @click="specialAttack" >SPECIAL ATTACK</button>
         <button @click="heal" >HEAL</button>
         <button @click="surrenderMe" >SURRENDER</button>
       </section>
