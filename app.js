@@ -43,14 +43,14 @@ const app = Vue.createApp({
            }
         },
         heal(){
-           if(userHealth>0){
+           if(this.userHealth>0){
              this.userHealth += randomizeNumber(10,20);
            }else{
             this.gameOver = true
            }
         },
         surrenderMe(){
-            if(!gameOver){
+            if(!this.gameOver){
 
                 this.surrender = true;
             }
